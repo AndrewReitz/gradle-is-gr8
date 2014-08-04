@@ -58,7 +58,7 @@
           <ul>
             <li class="fragment">Groovy == Java, Java != Groovy</li>
             <li class="fragment">Automatic Getters and Setters</li>
-            <li class="fragment">Closures!</li>
+            <li class="fragment">Closures! <code>def closure = {println "Hello, World!"}</code></li>
             <li class="fragment">Does not require ;</li>
             <li class="fragment">Does not require () when calling functions</li>
           </ul>
@@ -312,7 +312,7 @@ android {
                 { src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
                 { src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
                 { src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                { src: 'lib/reveal.js/plugin/remotes/remotes.js', async: true, condition: function () { return !!document.body.classList; } }
+                
             ]
         });
 
