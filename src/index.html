@@ -208,10 +208,73 @@ android {
 </code></pre>
         </section>
         <section>
+          <h1>Setup Different Build Types</h1>
+<pre><code>
+   buildTypes {
+    debug {
+      applicationIdSuffix '.dev'
+      versionNameSuffix '-dev'
+    }
 
+    release {
+      signingConfig signingConfigs.release
+    }
+  }
+</code></pre>
+          <p class="fragment">Debug Package: com.mypackage.dev</p>
+          <p class="fragment">Debug Version: 1.0-dev</p>
+          <p class="fragment">Debug key by default, release uses our key we configured</p>
         </section>
         <section>
+          <h1>Closing</h1>
+          <ul>
+            <li class="fragment">There are many ways to setup gradle</li>
+            <li class="fragment">But hopefully this get's rid of some of the mystery</li>
+            <li class="fragment">For a quick bootstrap check out <a href="//velcro.andrewreitz.com">Velcro</a> (velcro.andrewreitz.com)</li>
+            <li class="fragment">Questions?</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Lab</h1>
+          <ol>
+            <li>Create a new project using Android Studio</li>
+            <li>Add Retrofit (compile 'com.squareup.retrofit:retrofit:1.6.1')</li>
+            <li>Do an API Request using Retrofit</li>
+            <li>Play around, break stuff and ask me questions!</li>
+          </ol>
+        </section>
+        <section>
+          <h1>Retrofit Example</h1>
+<pre><code>
+  class Contributor {
+    String login;
+    int contributions;
+  }
 
+  interface GitHub {
+    @GET("/repos/{owner}/{repo}/contributors")
+    List&lt;Contributor&gt; contributors(
+        @Path("owner") String owner,
+        @Path("repo") String repo
+    );
+  }
+
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    // Create a very simple REST adapter which points the GitHub API endpoint.
+    RestAdapter restAdapter = new RestAdapter.Builder()
+        .setEndpoint("https://api.github.com")
+        .build();
+
+    // Create an instance of our GitHub API interface.
+    GitHub github = restAdapter.create(GitHub.class);
+
+    // Fetch and print a list of the contributors to this library.
+    List&lt;Contributor&gt; contributors = github.contributors("square", "retrofit");
+    for (Contributor contributor : contributors) {
+      Log.d("RETROFIT", contributor.login + " (" + contributor.contributions + ")");
+    }
+  }
+</code></pre>
         </section>
     </div>
 
