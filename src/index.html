@@ -246,42 +246,9 @@ android {
           <ol>
             <li>Create a new project using Android Studio</li>
             <li>Add Retrofit (compile 'com.squareup.retrofit:retrofit:1.6.1')</li>
-            <li>Do an API Request using Retrofit</li>
+            <li>Do an API Request using Retrofit (<a href="https://github.com/square/retrofit/blob/master/retrofit-samples/github-client/src/main/java/com/example/retrofit/GitHubClient.java">Sample</a>)</li>
             <li>Play around, break stuff and ask me questions!</li>
           </ol>
-        </section>
-        <section>
-          <h1>Retrofit Example</h1>
-<pre><code>
-  class Contributor {
-    String login;
-    int contributions;
-  }
-
-  interface GitHub {
-    @GET("/repos/{owner}/{repo}/contributors")
-    List&lt;Contributor&gt; contributors(
-        @Path("owner") String owner,
-        @Path("repo") String repo
-    );
-  }
-
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    // Create a very simple REST adapter which points the GitHub API endpoint.
-    RestAdapter restAdapter = new RestAdapter.Builder()
-        .setEndpoint("https://api.github.com")
-        .build();
-
-    // Create an instance of our GitHub API interface.
-    GitHub github = restAdapter.create(GitHub.class);
-
-    // Fetch and print a list of the contributors to this library.
-    List&lt;Contributor&gt; contributors = github.contributors("square", "retrofit");
-    for (Contributor contributor : contributors) {
-      Log.d("RETROFIT", contributor.login + " (" + contributor.contributions + ")");
-    }
-  }
-</code></pre>
         </section>
     </div>
 
